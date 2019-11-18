@@ -4,6 +4,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CarbonCalculatorActivity">
+    tools:context=".CarbonCalculatorActivity" >
+
+    <TextView
+        android:id="@+id/carbon_footprint_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="Carbon Footprint Calculator"
+        android:textAlignment="center"
+        android:textSize="@dimen/title_size_protrait" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/carbon_footprint_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Carbon Footprint is: "
+        android:textSize="@dimen/reg_text_size_portrait"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/carbon_footprint_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/carbon_footprint_score"
+        android:paddingBottom="@dimen/cf_reg_text_top_padding"
+        android:paddingTop="@dimen/cf_reg_text_top_padding"
+        android:paddingStart="@dimen/cf_reg_text_left_padding">
+    </TextView>
+
+    <TextView
+        android:id="@+id/carbon_footprint_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/placeholder"
+        android:textSize="@dimen/reg_text_size_portrait"
+        app:layout_constraintLeft_toRightOf="@+id/carbon_footprint_text"
+        app:layout_constraintTop_toBottomOf="@+id/carbon_footprint_title"
+        >
+    </TextView>
+
+    <TextView
+        android:id="@+id/avg_american_cf_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/average_american_cf_text"
+        android:textSize="@dimen/reg_text_size_portrait"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/carbon_footprint_text"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:paddingBottom="@dimen/cf_reg_text_top_padding"
+        android:paddingTop="@dimen/cf_reg_text_top_padding"
+        android:paddingEnd="@dimen/cf_reg_text_right__padding"
+        android:paddingStart="@dimen/cf_reg_text_left_padding"
+        >
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/avg_international_cf_text"
+        android:textAlignment="center"
+        android:textSize="@dimen/reg_text_size_portrait"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/avg_american_cf_text"
+        android:paddingBottom="@dimen/cf_reg_text_top_padding"
+        android:paddingTop="@dimen/cf_reg_text_top_padding"
+        android:paddingEnd="@dimen/cf_reg_text_right__padding"
+        android:paddingStart="@dimen/cf_reg_text_left_padding"
+        >
+    </TextView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
