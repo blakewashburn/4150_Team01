@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view){
             startActivity(new Intent(MainActivity.this, CarbonCalculatorActivity.class));
         }   //end onClick
-    };  //end aboutButtonClickListener
+    };  //end calcCarbonListener
 
     // Meal Log Listener
     private View.OnClickListener mealLogListener = new View.OnClickListener(){
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view){
             startActivity(new Intent(MainActivity.this, MealLogActivity.class));
         }   //end onClick
-    };  //end aboutButtonClickListener
+    };  //end mealLogListener
 
     // Location Based Report Card Listener
     private View.OnClickListener reportCardListener = new View.OnClickListener(){
@@ -45,5 +45,5 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view){
             startActivity(new Intent(MainActivity.this, ReportCardActivity.class));
         }   //end onClick
-    };  //end aboutButtonClickListener
+    };  //end reportCardListener
 }

@@ -1,81 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".CarbonCalculatorActivity" >
-
-    <TextView
-        android:id="@+id/carbon_footprint_title"
+    android:layout_height="match_parent">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:text="Carbon Footprint Calculator"
-        android:textAlignment="center"
-        android:textSize="@dimen/title_size_protrait" >
-    </TextView>
+        android:layout_height="match_parent"
+        tools:context=".CarbonCalculatorActivity"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/carbon_footprint_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your Carbon Footprint is: "
-        android:textSize="@dimen/reg_text_size_portrait"
-        android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/carbon_footprint_title"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/carbon_footprint_score"
-        android:paddingBottom="@dimen/cf_reg_text_top_padding"
-        android:paddingTop="@dimen/cf_reg_text_top_padding"
-        android:paddingStart="@dimen/cf_reg_text_left_padding">
-    </TextView>
+        <TextView
+            android:id="@+id/cf_calc_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Carbon Footprint Calculator"
+            android:textAlignment="center"
+            android:textSize="@dimen/title_size_protrait"
+            >
+        </TextView>
 
-    <TextView
-        android:id="@+id/carbon_footprint_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/placeholder"
-        android:textSize="@dimen/reg_text_size_portrait"
-        app:layout_constraintLeft_toRightOf="@+id/carbon_footprint_text"
-        app:layout_constraintTop_toBottomOf="@+id/carbon_footprint_title"
-        >
-    </TextView>
+        <TextView
+            android:id="@+id/cf_calc_question1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Q1: What is your average gas usage per week? (in gallons)"
+            android:textSize="@dimen/reg_text_size_portrait"
+            android:paddingTop="@dimen/cf_calc_qa_top_padding"
+            android:paddingStart="@dimen/cf_calc_qa_left_padding_portrait"
+            android:paddingEnd="@dimen/cf_calc_qa_right_padding_portrait"
+            >
+        </TextView>
 
-    <TextView
-        android:id="@+id/avg_american_cf_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/average_american_cf_text"
-        android:textSize="@dimen/reg_text_size_portrait"
-        android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/carbon_footprint_text"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:paddingBottom="@dimen/cf_reg_text_top_padding"
-        android:paddingTop="@dimen/cf_reg_text_top_padding"
-        android:paddingEnd="@dimen/cf_reg_text_right__padding"
-        android:paddingStart="@dimen/cf_reg_text_left_padding"
-        >
-    </TextView>
+        <EditText
+            android:id="@+id/cf_calc_answer1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Gallons per Week"
+            android:inputType="numberDecimal"
+            android:textSize="@dimen/reg_text_size_portrait"
+            >
+        </EditText>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/avg_international_cf_text"
-        android:textAlignment="center"
-        android:textSize="@dimen/reg_text_size_portrait"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avg_american_cf_text"
-        android:paddingBottom="@dimen/cf_reg_text_top_padding"
-        android:paddingTop="@dimen/cf_reg_text_top_padding"
-        android:paddingEnd="@dimen/cf_reg_text_right__padding"
-        android:paddingStart="@dimen/cf_reg_text_left_padding"
-        >
-    </TextView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            >
+        </View>
 
+        <TextView
+            android:id="@+id/cf_calc_question2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Q2: What is your average electricity usage per month? (in KiloWatt-hours)"
+            android:textSize="@dimen/reg_text_size_portrait"
+            android:paddingTop="@dimen/cf_calc_qa_top_padding"
+            android:paddingStart="@dimen/cf_calc_qa_left_padding_portrait"
+            android:paddingEnd="@dimen/cf_calc_qa_right_padding_portrait"
+            >
+        </TextView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/cf_calc_answer2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="KiloWatt-hours per Month"
+            android:inputType="numberDecimal"
+            android:textSize="@dimen/reg_text_size_portrait"
+            android:paddingStart="@dimen/cf_calc_qa_left_padding_portrait"
+            android:paddingEnd="@dimen/cf_calc_qa_right_padding_portrait"
+            >
+        </EditText>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            >
+        </View>
+
+        <TextView
+            android:id="@+id/cf_calc_question3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Q3: How much meat do you consume per week? (in pounds)"
+            android:textSize="@dimen/reg_text_size_portrait"
+            android:paddingTop="@dimen/cf_calc_qa_top_padding"
+            android:paddingStart="@dimen/cf_calc_qa_left_padding_portrait"
+            android:paddingEnd="@dimen/cf_calc_qa_right_padding_portrait"
+            >
+        </TextView>
+
+        <EditText
+            android:id="@+id/cf_calc_answer3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pounds per Week"
+            android:inputType="numberDecimal"
+            android:textSize="@dimen/reg_text_size_portrait"
+            android:paddingStart="@dimen/cf_calc_qa_left_padding_portrait"
+            android:paddingEnd="@dimen/cf_calc_qa_right_padding_portrait"
+            >
+        </EditText>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            >
+        </View>
+
+        <TextView
+            android:id="@+id/cf_calc_question4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Q4: How many bags of waste do you throw out each week? (in standard garbage bags)"
+            android:textSize="@dimen/reg_text_size_portrait"
+            android:paddingTop="@dimen/cf_calc_qa_top_padding"
+            android:paddingStart="@dimen/cf_calc_qa_left_padding_portrait"
+            android:paddingEnd="@dimen/cf_calc_qa_right_padding_portrait"
+            >
+        </TextView>
+
+        <EditText
+            android:id="@+id/cf_calc_answer4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Garbage bags per week"
+            android:inputType="numberDecimal"
+            android:textSize="@dimen/reg_text_size_portrait"
+            android:paddingStart="@dimen/cf_calc_qa_left_padding_portrait"
+            android:paddingEnd="@dimen/cf_calc_qa_right_padding_portrait"
+            >
+        </EditText>
+
+        <Button
+            android:id="@+id/cf_calc_submit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SUBMIT"
+            android:textSize="@dimen/reg_text_size_portrait"
+            android:textAlignment="center"
+            android:paddingTop="@dimen/cf_calc_qa_top_padding"
+            android:layout_gravity="center"
+            >
+        </Button>
+    </LinearLayout>
+</ScrollView>

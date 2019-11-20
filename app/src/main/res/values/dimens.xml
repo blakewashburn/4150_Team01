@@ -6,5 +6,8 @@
     <dimen name="cf_reg_text_bottom__padding">20dp</dimen>
     <dimen name="cf_reg_text_right__padding">10dp</dimen>
     <dimen name="cf_reg_text_left_padding">10dp</dimen>
+    <dimen name="cf_calc_qa_top_padding">15dp</dimen>
+    <dimen name="cf_calc_qa_right_padding_portrait">20dp</dimen>
+    <dimen name="cf_calc_qa_left_padding_portrait">20dp</dimen>
 
 </resources>
