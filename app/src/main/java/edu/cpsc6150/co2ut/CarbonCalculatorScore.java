@@ -22,6 +22,8 @@ public class CarbonCalculatorScore extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carbon_calculator_score);
 
+        
+
         // Get answers from CarbonCalculatorActivity
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
