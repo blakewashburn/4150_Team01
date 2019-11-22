@@ -54,6 +54,7 @@ public class CarbonCalculatorActivity extends AppCompatActivity {
                 bundle.putDouble("answer2", answer2);
                 bundle.putDouble("answer3", answer3);
                 bundle.putDouble("answer4", answer4);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }   //end if-else
         }   //end onClick method

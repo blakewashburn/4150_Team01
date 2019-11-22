@@ -27,7 +27,7 @@
         android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@+id/carbon_footprint_title"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/carbon_footprint_score"
+        app:layout_constraintRight_toRightOf="parent"
         android:paddingBottom="@dimen/cf_reg_text_top_padding"
         android:paddingTop="@dimen/cf_reg_text_top_padding"
         android:paddingStart="@dimen/cf_reg_text_left_padding"
@@ -40,8 +40,9 @@
         android:layout_height="wrap_content"
         android:text="@string/placeholder"
         android:textSize="@dimen/reg_text_size_portrait"
-        app:layout_constraintLeft_toRightOf="@+id/carbon_footprint_text"
-        app:layout_constraintTop_toBottomOf="@+id/carbon_footprint_title"
+        app:layout_constraintTop_toBottomOf="@+id/carbon_footprint_text"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         >
     </TextView>
 
@@ -52,7 +53,7 @@
         android:text="@string/average_american_cf_text"
         android:textSize="@dimen/reg_text_size_portrait"
         android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/carbon_footprint_text"
+        app:layout_constraintTop_toBottomOf="@+id/carbon_footprint_score"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:paddingBottom="@dimen/cf_reg_text_top_padding"
@@ -61,22 +62,5 @@
         android:paddingStart="@dimen/cf_reg_text_left_padding"
         >
     </TextView>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/avg_international_cf_text"
-        android:textAlignment="center"
-        android:textSize="@dimen/reg_text_size_portrait"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avg_american_cf_text"
-        android:paddingBottom="@dimen/cf_reg_text_top_padding"
-        android:paddingTop="@dimen/cf_reg_text_top_padding"
-        android:paddingEnd="@dimen/cf_reg_text_right__padding"
-        android:paddingStart="@dimen/cf_reg_text_left_padding"
-        >
-    </TextView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
