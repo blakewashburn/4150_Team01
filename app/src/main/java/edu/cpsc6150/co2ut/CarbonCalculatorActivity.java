@@ -24,7 +24,7 @@ public class CarbonCalculatorActivity extends AppCompatActivity {
 
 
 
-        
+
         // connect front-end EditText views to EditText values on back-end
         answer1View = findViewById(R.id.cf_calc_answer1);
         answer2View = findViewById(R.id.cf_calc_answer2);
