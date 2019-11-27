@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">CO2UT</string>
     <string name="placeholder">PlaceHolder</string>
-    <string name="average_american_cf_text">The Average American carbon footprint is: \n21.5</string>
-    <string name="avg_international_cf_text">The average International carbon footprint is: \n18</string>
+    <string name="average_american_cf_text">The Average American carbon footprint is \n49 metric tonnes</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
