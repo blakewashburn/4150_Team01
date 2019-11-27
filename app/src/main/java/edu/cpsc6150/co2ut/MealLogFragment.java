@@ -49,7 +49,6 @@ public class MealLogFragment extends Fragment {
         // set up recycleview adapter
         MealAdapter adapter = new MealAdapter(mealLog);
         recyclerView.setAdapter(adapter);
-        Log.d("ONCREATEVIEW", "We returned a view baby");
         return view;
     }   //end onCreateView method
 
@@ -59,16 +58,13 @@ public class MealLogFragment extends Fragment {
         private ImageView mealPictured;
         private TextView mealType;
         private TextView impactScore;
-        private int count = 0;
 
         public MealHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_meals, parent, false));
-            Log.d("MEALHOLDER", "about to create a mealholder");
             mealPictured = itemView.findViewById(R.id.rv_meal_pictured);
             mealDate = itemView.findViewById(R.id.rv_list_meal_date);
             mealType = itemView.findViewById(R.id.rv_meal_type);
             impactScore = itemView.findViewById(R.id.rv_impact_score);
-            Log.d("MEALHOLDER", "We created a mealholder yall");
         }   // end MealHolder constructor
 
         public void bind(Meal meal) {
@@ -79,8 +75,6 @@ public class MealLogFragment extends Fragment {
             mealPictured.setImageDrawable(meal.getImage());
             mealType.setText(meal.getMealType());
             impactScore.setText(meal.getImpactScore());
-            count++;
-            Log.d("BIND", "We made it to count #:" + count);
         }   //end bind method
     }   //end MealHolder Class
 
@@ -89,27 +83,22 @@ public class MealLogFragment extends Fragment {
 
         public MealAdapter(List<Meal> myMeals) {
             meals = myMeals;
-            Log.d("MEALADAPTER", "We created a mealAdapter boys");
         }   //end MealAdapter method
 
         @Override
         public MealHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            Log.d("CREATEVIEWHOLDER", "about to create that view holder");
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
             return new MealHolder(layoutInflater, parent);
         }   //end onCreateViewHolder method
 
         @Override
         public void onBindViewHolder(MealHolder holder, int position) {
-            Log.d("BindViewHolder", "about to bind a view holder");
             Meal meal = meals.get(position);
             holder.bind(meal);
-            Log.d("BindViewHolder", "just bound that view holder");
         }   //end onBindViewHolder method
 
         @Override
         public int getItemCount() {
-            Log.d("getItemCount", "asking for item count size, returning "+ meals.size());
             return meals.size();
         }   //end getItemCount method
     }   //end MealAdapter class

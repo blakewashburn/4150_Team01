@@ -1,6 +1,5 @@
 package edu.cpsc6150.co2ut;
 
-
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import androidx.core.content.ContextCompat;
