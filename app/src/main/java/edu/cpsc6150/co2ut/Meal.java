@@ -1,6 +1,5 @@
 package edu.cpsc6150.co2ut;
 
-
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import androidx.core.content.ContextCompat;
@@ -30,7 +29,7 @@ public class Meal {
     public void setImpactScore(String impactScore) { this.impactScore = impactScore; }
 
     public static ArrayList<Meal> createMealLog(Context context) {
-        ArrayList<Meal> MealLog = new ArrayList<>();
+        ArrayList<Meal> mealLog = new ArrayList<>();
 
         // Create test data
         Drawable applesDrawable = ContextCompat.getDrawable(context, R.drawable.apples);
@@ -39,9 +38,14 @@ public class Meal {
         Meal meal1 = new Meal(applesDrawable, "11/20/1997 at 4:30 PM", "fruit", "2");
         Meal meal2 = new Meal(orangesDrawable, "05/21/1997 at 7:00 PM", "fruit", "2");
         Meal meal3 = new Meal(watermelonDrawable, "01/01/2014 at 7:00 AM", "fruit", "2");
-        MealLog.add(meal1);
-        MealLog.add(meal2);
-        MealLog.add(meal3);
-        return MealLog;
+        mealLog.add(meal1);
+        mealLog.add(meal2);
+        mealLog.add(meal3);
+        return mealLog;
     }   //end createMealLog method
+
+    public static void addMeal(ArrayList<Meal> mealLog, Meal meal){
+        mealLog.add(meal);
+    }
+
 }   //end Meal class
