@@ -56,7 +56,6 @@ public class MealLogFragment extends Fragment {
         private ImageView mealPictured;
         private TextView mealType;
         private TextView impactScore;
-        private int count = 0;
 
         public MealHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_meals, parent, false));
@@ -72,7 +71,6 @@ public class MealLogFragment extends Fragment {
             mealPictured.setImageDrawable(meal.getImage());
             mealType.setText(meal.getMealType());
             impactScore.setText(meal.getImpactScore());
-            count++;
         }   //end bind method
     }   //end MealHolder Class
 
