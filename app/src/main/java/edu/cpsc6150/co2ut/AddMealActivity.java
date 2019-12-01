@@ -42,6 +42,7 @@ public class AddMealActivity extends AppCompatActivity {
     private Button savePhoto;
     public ArrayList<Meal> mealLog;
 
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
