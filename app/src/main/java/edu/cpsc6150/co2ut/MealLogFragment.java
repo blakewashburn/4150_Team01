@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MealLogFragment extends Fragment {
-    private Context context;
 
     // Required empty public constructor
     public MealLogFragment() {}
@@ -39,8 +38,7 @@ public class MealLogFragment extends Fragment {
 
         // Bring the meal log fragment to the view
         View view = inflater.inflate(R.layout.fragment_meal_log, container, false);
-        context = getActivity();
-        ArrayList<Meal> mealLog = Meal.createMealLog(context);
+        ArrayList<Meal> mealLog = MealLogActivity.getMealLog();
 
         // set up recycleview
         RecyclerView recyclerView = view.findViewById(R.id.meal_log_recycler_view);
@@ -68,9 +66,7 @@ public class MealLogFragment extends Fragment {
         }   // end MealHolder constructor
 
         public void bind(Meal meal) {
-            Log.d("BIND", "About to bind a meal");
             currentMeal = meal;
-            // TODO: to.String(*with format*) for the below currentMeal.getDate()
             mealDate.setText(currentMeal.getDate());
             mealPictured.setImageDrawable(meal.getImage());
             mealType.setText(meal.getMealType());
