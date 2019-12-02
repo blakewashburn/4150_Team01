@@ -227,7 +227,7 @@ public class ReportCardActivity extends AppCompatActivity {
                     getString(R.string.welcome_message,state)
             );
 
-
+            
             // location last updated time
         }
     }   //end updateLocationUI method
@@ -395,7 +395,7 @@ public class ReportCardActivity extends AppCompatActivity {
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode,resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             // Check for the integer request code originally supplied to startResolutionForResult().
             case REQUEST_CHECK_SETTINGS:

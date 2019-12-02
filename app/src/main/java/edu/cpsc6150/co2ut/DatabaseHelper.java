@@ -106,7 +106,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             name[5] =cursor.getString(cursor.getColumnIndex(DatabaseHelper.INLAND_FLOODING));
             name[6] =cursor.getString(cursor.getColumnIndex(DatabaseHelper.COASTAL_FLOODING));
         }
-        
+
 
         return name;
     }   //end getData method
