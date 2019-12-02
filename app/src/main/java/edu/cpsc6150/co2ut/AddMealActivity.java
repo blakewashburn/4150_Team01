@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
@@ -40,9 +41,11 @@ public class AddMealActivity extends AppCompatActivity {
     private String mPhotoPath;
     private ImageView photoToTake;
     private Button savePhoto;
+    private String date;
+    private String mealType = "Meat";
+    private String impactScore = "5";
     public ArrayList<Meal> mealLog;
 
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +62,10 @@ public class AddMealActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode,resultCode, data);
         Log.d("onActivityResult", "stepping into function");
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
+            date =  new SimpleDateFormat("MM/dd/yyyy").format(new Date());
             displayPhoto();
             addPhotoToGallery();
             savePhoto.setEnabled(true);
@@ -174,8 +179,6 @@ public class AddMealActivity extends AppCompatActivity {
         Log.d("addPhotoToGallery", "stepping into function");
 
         // Send broadcast to Media Scanner about new image file
-
-        //TODO: add photo to MealLog list
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         File file = new File(mPhotoPath);
         Uri fileUri = Uri.fromFile(file);
@@ -188,9 +191,14 @@ public class AddMealActivity extends AppCompatActivity {
         // Don't allow Save button to be pressed while image is saving
         savePhoto.setEnabled(false);
 
+        Meal newMeal = new Meal(photoToTake.getDrawable(), date, mealType, impactScore);
+        mealLog.add(0, newMeal);
         // Save in background thread
         SaveBitmapTask saveTask = new SaveBitmapTask();
         saveTask.execute();
+
+        Intent intent = new Intent(AddMealActivity.this, MealLogActivity.class);
+        startActivity(intent);
     }
 
     private boolean saveAlteredPhoto() {
@@ -223,7 +231,6 @@ public class AddMealActivity extends AppCompatActivity {
         }
     }
 
-    // NOTE: Progress bar should be added
     private class SaveBitmapTask extends AsyncTask<Void, Void, Boolean> {
         @Override
         protected Boolean doInBackground(Void... params) {
@@ -237,9 +244,29 @@ public class AddMealActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(AddMealActivity.this, "photo not saved", Toast.LENGTH_LONG).show();
             }
-
             savePhoto.setEnabled(true);
-        }
-    }
+        }   //end onPostExecute method
+    }   //end SaveBitmapTask Class
 
+    public void onRadioButtonClicked(View view) {
+        // Which radio button was selected?
+        switch (view.getId()) {
+            case R.id.radio_button_meat:
+                mealType = "Meat";
+                impactScore += "5";
+                break;
+            case R.id.radio_button_starch:
+                mealType = "Starch";
+                impactScore += "3";
+                break;
+            case R.id.radio_button_vegetable:
+                mealType = "Vegetable";
+                impactScore += "1";
+                break;
+            case R.id.radio_button_fruit:
+                mealType = "Fruit";
+                impactScore += "2";
+                break;
+        }   //end switch statement
+    }   //end onRadioButtonClicked method
 }   //end AddMealActivity class

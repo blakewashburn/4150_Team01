@@ -12,6 +12,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add a Meal"
+        android:textSize="40sp"
+        android:textColor="@color/black"
+        android:layout_gravity="center"
+        android:paddingStart="50dp"
+        android:paddingEnd="50dp"
         >
     </TextView>
 
@@ -20,25 +25,89 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Take Photo"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:layout_gravity="center"
+        android:paddingStart="50dp"
+        android:paddingEnd="50dp"
         android:onClick="takePhoto"
-        >
-    </Button>
-
-    <Button
-        android:id="@+id/save_photo_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Save Photo"
-        android:onClick="savePhoto"
         >
     </Button>
 
     <ImageView
         android:id="@+id/add_photo_meal_log"
         android:contentDescription="Photo to take"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_marginTop="10dp"
         >
     </ImageView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Describe the meal type below:"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_gravity="center"
+        >
+    </TextView>
+
+    <RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="50dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radio_button_meat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Meat"
+            android:textColor="@color/black"
+            android:onClick="onRadioButtonClicked" />
+
+        <RadioButton
+            android:id="@+id/radio_button_starch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Starch"
+            android:textColor="@color/black"
+            android:onClick="onRadioButtonClicked" />
+
+        <RadioButton
+            android:id="@+id/radio_button_vegetable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="vegetable"
+            android:textColor="@color/black"
+            android:onClick="onRadioButtonClicked" />
+
+        <RadioButton
+            android:id="@+id/radio_button_fruit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fruit"
+            android:textColor="@color/black"
+            android:onClick="onRadioButtonClicked" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/save_photo_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save Photo"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:layout_gravity="center"
+        android:paddingTop="10dp"
+        android:paddingStart="50dp"
+        android:paddingEnd="50dp"
+        android:onClick="savePhoto"
+        >
+    </Button>
+
 </LinearLayout>
