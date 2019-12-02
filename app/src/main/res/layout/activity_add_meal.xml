@@ -34,6 +34,7 @@
         android:background="@drawable/button_background"
         android:textAlignment="center"
         android:textColor="@color/white"
+        android:onClick="takePhoto"
         >
     </Button>
 
