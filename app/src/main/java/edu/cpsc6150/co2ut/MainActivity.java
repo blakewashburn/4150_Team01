@@ -12,9 +12,9 @@ public class MainActivity extends AppCompatActivity {
     private static File mealLogFile;
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: sets layout file, connects front end widgets with backend
+     * PreConditions: none
+     * PostConditions: mealLog file is created to save future meals
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,56 +41,57 @@ public class MainActivity extends AppCompatActivity {
     }   //end onCreate method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: get mealLog file
+     * PreConditions: none
+     * PostConditions: mealLog file is returned to caller
      */
     public static File getMealLogFile(){
         return mealLogFile;
     }
 
-    /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
-     */
+
     private View.OnClickListener detectActivityListener = new View.OnClickListener(){
+        /**
+         * Functionality: handle a click of the detectActivity button
+         * PreConditions: view cannot be null
+         * PostConditions: DetectActivity activity is started
+         */
         @Override
         public void onClick(View view){
             startActivity(new Intent(MainActivity.this, DetectActivity.class));
         }   //end onClick
     };  //end detectActivitiyListener
 
-    /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
-     */
     private View.OnClickListener calcCarbonListener = new View.OnClickListener(){
+        /**
+         * Functionality: handle a click of the calcCarbonFootprint button
+         * PreConditions: view cannot be null
+         * PostConditions: CarbonCalculatorActivity activity is started
+         */
         @Override
         public void onClick(View view){
             startActivity(new Intent(MainActivity.this, CarbonCalculatorActivity.class));
         }   //end onClick
     };  //end calcCarbonListener
 
-    /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
-     */
     private View.OnClickListener mealLogListener = new View.OnClickListener(){
+        /**
+         * Functionality: handle a click of the mealLog button
+         * PreConditions: view cannot be null
+         * PostConditions: MealLogActivity activity is started
+         */
         @Override
         public void onClick(View view){
             startActivity(new Intent(MainActivity.this, MealLogActivity.class));
         }   //end onClick
     };  //end mealLogListener
 
-    /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
-     */
     private View.OnClickListener reportCardListener = new View.OnClickListener(){
+        /**
+         * Functionality: handle a click of the reportCard button
+         * PreConditions: view cannot be null
+         * PostConditions: ReportCardActivity activity is started
+         */
         @Override
         public void onClick(View view){
             startActivity(new Intent(MainActivity.this, ReportCardActivity.class));
