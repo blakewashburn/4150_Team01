@@ -47,17 +47,6 @@
 
 
         <Button
-            android:id="@+id/detect_activity_button_homepage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Recommend Task Based on Activity"
-            android:textColor="@color/black"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="5dp"
-            android:background="@drawable/button_background_homepage"
-            android:textAlignment="center"></Button>
-
-        <Button
             android:id="@+id/carbon_calc_button_homepage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,7 +55,8 @@
             android:layout_marginVertical="5dp"
             android:background="@drawable/button_background_homepage"
             android:text="Calculate Your \nCarbon Footprint"
-            android:textAlignment="center"></Button>
+            android:textAlignment="center">
+        </Button>
 
         <Button
             android:id="@+id/meal_log_button_homepage"
@@ -92,6 +82,18 @@
             android:textAlignment="center"
             android:text="Location Based \nClimate Report Card"
             >
+        </Button>
+
+        <Button
+            android:id="@+id/detect_activity_button_homepage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recommend Task Based on Activity"
+            android:textColor="@color/black"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="5dp"
+            android:background="@drawable/button_background_homepage"
+            android:textAlignment="center">
         </Button>
 
     </LinearLayout>
