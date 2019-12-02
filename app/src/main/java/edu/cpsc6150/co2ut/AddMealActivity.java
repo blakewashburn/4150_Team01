@@ -4,14 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.LightingColorFilter;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -22,13 +20,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.SeekBar;
 import android.widget.Toast;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -46,6 +42,11 @@ public class AddMealActivity extends AppCompatActivity {
     private String impactScore = "5";
     public ArrayList<Meal> mealLog;
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,13 +58,16 @@ public class AddMealActivity extends AppCompatActivity {
 
         // get current status of mealLog
         mealLog = MealLogActivity.getMealLog();
-
     }   //end onCreate Method
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode,resultCode, data);
-        Log.d("onActivityResult", "stepping into function");
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
             date =  new SimpleDateFormat("MM/dd/yyyy").format(new Date());
             displayPhoto();
@@ -72,10 +76,14 @@ public class AddMealActivity extends AppCompatActivity {
         }
     }   //end onActivityResult method
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
-        Log.d("onRequestPermissionResult", "stepping into function");
         switch (requestCode) {
             case REQUEST_EXTERNAL_WRITE_PERMISSIONS: {
                 if (grantResults.length > 0
@@ -87,10 +95,12 @@ public class AddMealActivity extends AppCompatActivity {
         }   //end switch statement
     }   //end onRequestPermissionResult method
 
-
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     private boolean hasExternalWritePermission() {
-        Log.d("hasExternalWritePermission", "stepping into function");
-
         // Get permission to write to external storage
         String permission = Manifest.permission.WRITE_EXTERNAL_STORAGE;
         if (ContextCompat.checkSelfPermission(this,
@@ -99,12 +109,15 @@ public class AddMealActivity extends AppCompatActivity {
                     new String[] { permission }, REQUEST_EXTERNAL_WRITE_PERMISSIONS);
             return false;
         }
-
         return true;
-    }
+    }   //end hasExternalWritePermission method
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     public void takePhoto(View view) {
-        Log.d("takePhoto", "stepping into function");
         if (!hasExternalWritePermission()) return;
 
         // Create implicit intent to take photo
@@ -134,11 +147,14 @@ public class AddMealActivity extends AppCompatActivity {
                 startActivityForResult(photoCaptureIntent, REQUEST_TAKE_PHOTO);
             }
         }
-    }
+    }   //end takePhoto method
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     private File createImageFile() throws IOException {
-        Log.d("createImageFile", "stepping into function");
-
         // Create a unique image filename
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFilename = "photo_" + timeStamp + ".jpg";
@@ -147,10 +163,14 @@ public class AddMealActivity extends AppCompatActivity {
         File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         File image = new File(storageDir, imageFilename);
         return image;
-    }
+    }   //end createImageFile method
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     private void displayPhoto() {
-        Log.d("displayPhoto", "stepping into function");
         // Get ImageView dimensions
         int targetW = photoToTake.getWidth();
         int targetH = photoToTake.getHeight();
@@ -173,25 +193,33 @@ public class AddMealActivity extends AppCompatActivity {
 
         // Display smaller bitmap
         photoToTake.setImageBitmap(bitmap);
-    }
+    }   //end displayPhoto method
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     private void addPhotoToGallery() {
-        Log.d("addPhotoToGallery", "stepping into function");
-
         // Send broadcast to Media Scanner about new image file
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         File file = new File(mPhotoPath);
         Uri fileUri = Uri.fromFile(file);
         mediaScanIntent.setData(fileUri);
         sendBroadcast(mediaScanIntent);
-    }
+    }   //end addPhotoToGallery method
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     public void savePhoto(View view) {
-        Log.d("savePhoto", "stepping into function");
         // Don't allow Save button to be pressed while image is saving
         savePhoto.setEnabled(false);
 
         Meal newMeal = new Meal(photoToTake.getDrawable(), date, mealType, impactScore);
+        saveObjectInternally(newMeal);
         mealLog.add(0, newMeal);
         // Save in background thread
         SaveBitmapTask saveTask = new SaveBitmapTask();
@@ -199,10 +227,14 @@ public class AddMealActivity extends AppCompatActivity {
 
         Intent intent = new Intent(AddMealActivity.this, MealLogActivity.class);
         startActivity(intent);
-    }
+    }   //end savePhoto method
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     private boolean saveAlteredPhoto() {
-        Log.d("saveAlteredPhoto", "stepping into function");
         // Read original image
         Bitmap bitmap = BitmapFactory.decodeFile(mPhotoPath, null);
 
@@ -228,15 +260,50 @@ public class AddMealActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
             return false;
-        }
-    }
+        }   //end try-catch
+    }   //end saveAlteredPhoto method
+
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
+    private void saveObjectInternally(Meal meal){
+        File storageDir = MainActivity.getMealLogFile();
+
+        try {
+            // Saving of object in a file
+            FileOutputStream file = new FileOutputStream(storageDir);
+            ObjectOutputStream out = new ObjectOutputStream(file);
+
+            // serialize object
+            out.writeObject(meal);
+
+            out.close();
+            file.close();
+
+        }catch(IOException ex) {
+            Log.d("AddMealActivity - saveObjectInternally", "Exception Caught");
+        }   //end try-catch block
+    }   //end saveObjectInternally method
 
     private class SaveBitmapTask extends AsyncTask<Void, Void, Boolean> {
+
+        /**
+         * Functionality:
+         * PreConditions:
+         * PostConditions:
+         */
         @Override
         protected Boolean doInBackground(Void... params) {
             return saveAlteredPhoto();
-        }
+        }   //end doInBackground method
 
+        /**
+         * Functionality:
+         * PreConditions:
+         * PostConditions:
+         */
         @Override
         protected void onPostExecute(Boolean result) {
             if (result) {
@@ -248,24 +315,29 @@ public class AddMealActivity extends AppCompatActivity {
         }   //end onPostExecute method
     }   //end SaveBitmapTask Class
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     public void onRadioButtonClicked(View view) {
         // Which radio button was selected?
         switch (view.getId()) {
             case R.id.radio_button_meat:
                 mealType = "Meat";
-                impactScore += "5";
+                impactScore = "5";
                 break;
             case R.id.radio_button_starch:
                 mealType = "Starch";
-                impactScore += "3";
+                impactScore = "3";
                 break;
             case R.id.radio_button_vegetable:
                 mealType = "Vegetable";
-                impactScore += "1";
+                impactScore = "1";
                 break;
             case R.id.radio_button_fruit:
                 mealType = "Fruit";
-                impactScore += "2";
+                impactScore = "2";
                 break;
         }   //end switch statement
     }   //end onRadioButtonClicked method

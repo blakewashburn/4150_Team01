@@ -82,7 +82,7 @@
             android:id="@+id/radio_button_vegetable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="vegetable"
+            android:text="Vegetable"
             android:textColor="@color/black"
             android:onClick="onRadioButtonClicked" />
 
@@ -90,7 +90,7 @@
             android:id="@+id/radio_button_fruit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="fruit"
+            android:text="Fruit"
             android:textColor="@color/black"
             android:onClick="onRadioButtonClicked" />
     </RadioGroup>

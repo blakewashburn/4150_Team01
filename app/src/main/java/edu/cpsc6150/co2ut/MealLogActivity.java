@@ -2,7 +2,6 @@ package edu.cpsc6150.co2ut;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +13,11 @@ public class MealLogActivity extends AppCompatActivity {
     private Menu menu;
     private static ArrayList<Meal> mealLog;
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,20 +32,34 @@ public class MealLogActivity extends AppCompatActivity {
         // Replace the contents of the container with the new fragment
         ft.replace(R.id.meal_log_fragment_container, new MealLogFragment());
         ft.commit();
-
     }   //end onCreate method
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     public static ArrayList<Meal> getMealLog(){
         return mealLog;
     }   //end getMealLog method
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.app_bar_meal_log, menu);
         this.menu = menu;
         return super.onCreateOptionsMenu(menu);
-    }
+    }   //end onCreateOptionsMenu method
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -54,6 +72,6 @@ public class MealLogActivity extends AppCompatActivity {
 
             default:
                 return super.onOptionsItemSelected(item);
-        }
-    }
+        }   //end switch statement
+    }   //end onOptionsItemSelected method
 }   //end MealLogActivity class

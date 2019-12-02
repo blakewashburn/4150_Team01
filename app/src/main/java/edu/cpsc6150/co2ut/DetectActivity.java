@@ -26,11 +26,15 @@ public class DetectActivity extends AppCompatActivity {
     private ImageView imgActivity;
     private Button btnStartTrcking, btnStopTracking;
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detect);
-
 
         txtActivity = findViewById(R.id.txt_activity);
         txtConfidence = findViewById(R.id.txt_confidence);
@@ -39,6 +43,11 @@ public class DetectActivity extends AppCompatActivity {
         btnStopTracking = findViewById(R.id.btn_stop_tracking);
 
         btnStartTrcking.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Functionality:
+             * PreConditions:
+             * PostConditions:
+             */
             @Override
             public void onClick(View view) {
                 startTracking();
@@ -46,6 +55,11 @@ public class DetectActivity extends AppCompatActivity {
         });
 
         btnStopTracking.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Functionality:
+             * PreConditions:
+             * PostConditions:
+             */
             @Override
             public void onClick(View view) {
                 stopTracking();
@@ -53,6 +67,11 @@ public class DetectActivity extends AppCompatActivity {
         });
 
         broadcastReceiver = new BroadcastReceiver() {
+            /**
+             * Functionality:
+             * PreConditions:
+             * PostConditions:
+             */
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (intent.getAction().equals(Constants.BROADCAST_DETECTED_ACTIVITY)) {
@@ -60,12 +79,16 @@ public class DetectActivity extends AppCompatActivity {
                     int confidence = intent.getIntExtra("confidence", 0);
                     handleUserActivity(type, confidence);
                 }
-            }
+            }   //end onReceive method
         };
-
         startTracking();
-    }
+    }   //end onCreate method
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     private void handleUserActivity(int type, int confidence) {
         String label = getString(R.string.activity_unknown);
         int icon = R.drawable.ic_still;
@@ -109,7 +132,7 @@ public class DetectActivity extends AppCompatActivity {
                 label = getString(R.string.activity_unknown);
                 break;
             }
-        }
+        }   //end switch statement
 
         Log.e(TAG, "User activity: " + label + ", Confidence: " + confidence);
 
@@ -118,30 +141,49 @@ public class DetectActivity extends AppCompatActivity {
             txtConfidence.setText("Confidence: " + confidence);
             imgActivity.setImageResource(icon);
         }
-    }
+    }   //end handleUserActivity method
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     @Override
     protected void onResume() {
         super.onResume();
 
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver,
                 new IntentFilter(Constants.BROADCAST_DETECTED_ACTIVITY));
-    }
+    }   //end onResume method
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     @Override
     protected void onPause() {
         super.onPause();
-
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
-    }
+    }   //end onPause
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     private void startTracking() {
         Intent intent = new Intent(DetectActivity.this, BackgroundDetectedActivitiesService.class);
         startService(intent);
-    }
+    }   //end startTracking method
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     private void stopTracking() {
         Intent intent = new Intent(DetectActivity.this, BackgroundDetectedActivitiesService.class);
         stopService(intent);
-    }
-}
+    }   //end stopTracking method
+}   //end DetectActivity Class
