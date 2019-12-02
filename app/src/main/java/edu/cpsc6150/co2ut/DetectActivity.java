@@ -1,3 +1,32 @@
+/**
+ * Team Name: Team_01
+ * Team Member1 Name: Blake Washburn
+ * Team Member1 CUID: C89257841
+ * Team Member1 email: bwashbu@g.clemson.edu
+ *
+ * Team Member2: Stephen Carvalho
+ * Team Member2 CUID: C70675411
+ * Team Member2 email: scarval@g.clemson.edu
+ *
+ * Citations:
+ *
+ * App Icon: https://www.flaticon.com/home
+ *
+ * States Page Icons: https://www.flaticon.com/home
+ *
+ * Detect Activity Code Inspired from: https://developers.google.com/location-context/activity-recognition
+ *
+ * Meal Log Code Inspired from: https://learn.zybooks.com/zybook/CLEMSONCPSC4150PlaueFall2019/chapter/5/section/2
+ * and https://learn.zybooks.com/zybook/CLEMSONCPSC4150PlaueFall2019/chapter/9/section/5
+ *
+ * SQLite Database Code Inspired from: https://developer.android.com/training/data-storage/sqlite
+ * and https://learn.zybooks.com/zybook/CLEMSONCPSC4150PlaueFall2019/chapter/6/section/4
+ *
+ * FusedLocation Provider and Location Services code inspired from: https://learn.zybooks.com/zybook/CLEMSONCPSC4150PlaueFall2019/chapter/9/section/6
+ * and https://developer.android.com/training/location
+ *
+ * Carbon Footprint Calculator Metrics: https://www.epa.gov/energy/greenhouse-gases-equivalencies-calculator-calculations-and-references
+ */
 package edu.cpsc6150.co2ut;
 
 
@@ -25,9 +54,9 @@ public class DetectActivity extends AppCompatActivity {
 
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Initialize the UI elements and startTracking users activity
+     * PreConditions: UI elements must be declared
+     * PostConditions: UI elements initialized and starts tracking users activity
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +73,7 @@ public class DetectActivity extends AppCompatActivity {
         positive.setVisibility(View.GONE);
         still.setVisibility(View.GONE);
         driving.setVisibility(View.GONE);
-
-
         broadcastReceiver = new BroadcastReceiver() {
-            /**
-             * Functionality:
-             * PreConditions:
-             * PostConditions:
-             */
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (intent.getAction().equals(Constants.BROADCAST_DETECTED_ACTIVITY)) {
@@ -65,9 +87,9 @@ public class DetectActivity extends AppCompatActivity {
     }   //end onCreate method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Update UI based on the activity detected
+     * PreConditions: Type of activity detected and the confidence level are required
+     * PostConditions: Based on activity must display appropriate message
      */
     private void handleUserActivity(int type, int confidence) {
         String label = getString(R.string.activity_unknown);
@@ -165,9 +187,9 @@ public class DetectActivity extends AppCompatActivity {
     }   //end handleUserActivity method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: On Resume it should again start receiving updates for user activity
+     * PreConditions: application must be restarted from a  paused or stopped state
+     * PostConditions: Resume receiving location updates
      */
     @Override
     protected void onResume() {
@@ -180,9 +202,9 @@ public class DetectActivity extends AppCompatActivity {
     }   //end onResume method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Stop receiving activity updates when application is in the paused state
+     * PreConditions: Application must be paused
+     * PostConditions: Unregister the broadcastReceiver
      */
     @Override
     protected void onPause() {
@@ -191,9 +213,7 @@ public class DetectActivity extends AppCompatActivity {
     }   //end onPause
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Start tracking users activity
      */
     private void startTracking() {
         Intent intent = new Intent(DetectActivity.this, BackgroundDetectedActivitiesService.class);
@@ -201,9 +221,7 @@ public class DetectActivity extends AppCompatActivity {
     }   //end startTracking method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Stop tracking the users activity
      */
     private void stopTracking() {
         Intent intent = new Intent(DetectActivity.this, BackgroundDetectedActivitiesService.class);

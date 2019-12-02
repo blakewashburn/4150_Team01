@@ -1,3 +1,32 @@
+/**
+ * Team Name: Team_01
+ * Team Member1 Name: Blake Washburn
+ * Team Member1 CUID: C89257841
+ * Team Member1 email: bwashbu@g.clemson.edu
+ *
+ * Team Member2: Stephen Carvalho
+ * Team Member2 CUID: C70675411
+ * Team Member2 email: scarval@g.clemson.edu
+ *
+ * Citations:
+ *
+ * App Icon: https://www.flaticon.com/home
+ *
+ * States Page Icons: https://www.flaticon.com/home
+ *
+ * Detect Activity Code Inspired from: https://developers.google.com/location-context/activity-recognition
+ *
+ * Meal Log Code Inspired from: https://learn.zybooks.com/zybook/CLEMSONCPSC4150PlaueFall2019/chapter/5/section/2
+ * and https://learn.zybooks.com/zybook/CLEMSONCPSC4150PlaueFall2019/chapter/9/section/5
+ *
+ * SQLite Database Code Inspired from: https://developer.android.com/training/data-storage/sqlite
+ * and https://learn.zybooks.com/zybook/CLEMSONCPSC4150PlaueFall2019/chapter/6/section/4
+ *
+ * FusedLocation Provider and Location Services code inspired from: https://learn.zybooks.com/zybook/CLEMSONCPSC4150PlaueFall2019/chapter/9/section/6
+ * and https://developer.android.com/training/location
+ *
+ * Carbon Footprint Calculator Metrics: https://www.epa.gov/energy/greenhouse-gases-equivalencies-calculator-calculations-and-references
+ */
 package edu.cpsc6150.co2ut;
 
 import android.content.Context;
@@ -19,8 +48,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String INLAND_FLOODING = "inlandflooding";
     public static final String COASTAL_FLOODING = "coastalflooding";
 
-
-    /*CREATE TABLE students ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, phone_number TEXT......);*/
     public static final String CREATE_TABLE_STUDENTS = "CREATE TABLE "
             + TABLE_NAME + "(" + KEY_ID
             + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -32,20 +59,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + INLAND_FLOODING + " TEXT, "
             + COASTAL_FLOODING + " TEXT)";
 
-    /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
-     */
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         //Log.d("table", CREATE_TABLE_STUDENTS);
     }   //end DatabaseHelper constructor
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Creates tables
+     * PreConditions: needs table names and column names
+     * PostConditions: Table is created
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -53,9 +75,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }   //end onCreate method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Drop existing table and create new table if table already exists
+     * PreConditions: Database name, oldversion number and newVersion number are required to create a new table
+     * PostConditions: Old table should be dropped and new table should be created
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -81,9 +103,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }*/
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Get data from database and Update UI
+     * PreConditions: requires existing populated database
+     * PostConditions: Update reportcard in the UI from the database
      */
     public String[] getData(String state) {
         /*SQLiteDatabase db = this.getReadableDatabase();
