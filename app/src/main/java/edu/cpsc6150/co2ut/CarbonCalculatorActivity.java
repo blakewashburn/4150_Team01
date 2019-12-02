@@ -17,9 +17,9 @@ public class CarbonCalculatorActivity extends AppCompatActivity {
     public Button submitButton;
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: sets layout file, connects front end widgets with backend
+     * PreConditions: none
+     * PostConditions: widgets are set and submitButton receives a listener
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +37,10 @@ public class CarbonCalculatorActivity extends AppCompatActivity {
 
     private View.OnClickListener submitListener = new View.OnClickListener(){
         /**
-         * Functionality:
-         * PreConditions:
-         * PostConditions:
+         * Functionality: save user answers and pass to CarbonCalculatorScore activity
+         * PreConditions: view && answer1View && answer2View && answer3View && answer4View
+         *                  cannot be null
+         * PostConditions: answers are saved in bundle and CarbonCalculatorScore activity is started
          */
         @Override
         public void onClick(View view){

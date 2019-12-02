@@ -16,9 +16,9 @@ public class CarbonCalculatorScore extends AppCompatActivity {
     public final double KGS_IN_METRIC_TON = 1000;
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Calculate and display users carbon footprint score
+     * PreConditions: savedInstanceState cannot be null
+     * PostConditions: carbonFootprintDisplay is updated with user's calculated carbon footprint
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

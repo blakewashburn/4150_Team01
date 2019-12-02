@@ -12,9 +12,9 @@ public class Meal implements java.io.Serializable{
     private String impactScore;
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: create a Meal object and assign internal variables
+     * PreConditions: image && date && mealType && impactScore cannot be null
+     * PostConditions: Meal object is created and internal variables are set
      */
     public Meal(Drawable image, String date, String mealType, String impactScore){
         this.image = image;
@@ -30,11 +30,11 @@ public class Meal implements java.io.Serializable{
     public String getImpactScore() { return impactScore; }
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Create a mealLog and populate it with stored photos
+     * PreConditions: none
+     * PostConditions: mealLog is populated with user's stored meals
      */
-    public static ArrayList<Meal> createMealLog(Context context) {
+    public static ArrayList<Meal> createMealLog() {
         ArrayList<Meal> mealLog = new ArrayList<>();
         File storageDir = MainActivity.getMealLogFile();
         Meal tempMeal;
