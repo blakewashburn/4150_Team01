@@ -18,16 +18,21 @@
             android:id="@+id/img_activity"
             android:tint="#606060"
             android:layout_width="wrap_content"
+            android:layout_gravity="center"
             android:layout_height="200dp" />
 
         <TextView
             android:id="@+id/txt_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:textAllCaps="true"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18dp"
+            android:background="#02A660"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="5dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="5dp"
+            android:fontFamily="@font/bitter"
             android:textStyle="bold" />
 
         <TextView
@@ -39,45 +44,6 @@
             android:textAllCaps="true"
             android:textSize="14dp" />
 
-        <TextView
-            android:id="@+id/positive"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="5dp"
-            android:background="@color/colorPrimary"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="5dp"
-            android:text="ads"
-            android:textColor="@color/white"
-            android:fontFamily="@font/bitter"
-            android:textStyle="bold" />
-        <TextView
-            android:id="@+id/driving"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#F7685B"
-            android:textColor="@color/white"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="5dp"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="5dp"
-            android:fontFamily="@font/bitter"
-            android:textStyle="bold"
-            android:text="asd" />
-        <TextView
-            android:id="@+id/still"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#FFB946"
-            android:textColor="@color/white"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="5dp"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="5dp"
-            android:fontFamily="@font/bitter"
-            android:textStyle="bold"
-            android:text="asd" />
 
     </LinearLayout>
 
