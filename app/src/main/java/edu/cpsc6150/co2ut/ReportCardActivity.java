@@ -17,9 +17,14 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -79,7 +84,7 @@ public class ReportCardActivity extends AppCompatActivity {
     private Boolean mRequestingLocationUpdates;
 
     private DatabaseHelper databaseHelper;
-    private TextView statedisplay, gradedisplay;
+    private TextView statedisplay, gradedisplay, heat, drought, wildfires, inlandFlooding,coastalFlooding;
 
     /**
      * Functionality:
@@ -92,9 +97,15 @@ public class ReportCardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_report_card);
         ButterKnife.bind(this);
 
+
         databaseHelper = new DatabaseHelper(this);
         statedisplay = (TextView) findViewById(R.id.statedisplay);
         gradedisplay = (TextView) findViewById(R.id.gradedisplay);
+        heat = (TextView) findViewById(R.id.heat);
+        drought = (TextView) findViewById(R.id.drought);
+        wildfires = (TextView) findViewById(R.id.wildfires);
+        inlandFlooding = (TextView) findViewById(R.id.inlandFlooding);
+        coastalFlooding = (TextView) findViewById(R.id.coastalFlooding);
         // initialize the necessary libraries
         init();
 
@@ -177,8 +188,13 @@ public class ReportCardActivity extends AppCompatActivity {
                 if (addresses.size() > 0) {
                     state = addresses.get(0).getAdminArea();
                     String output[] = databaseHelper.getData(state);
-                    statedisplay.setText(output[0]);
-                    gradedisplay.setText(output[1]);
+                    statedisplay.setText("  State: "+output[0]);
+                    gradedisplay.setText("  Average: "+output[1]);
+                    heat.setText("  Extreme Heat: "+output[2]);
+                    drought.setText("  Drought: "+output[3]);
+                    wildfires.setText("  Wildfires: "+output[4]);
+                    inlandFlooding.setText("  Inland Flooding: "+output[5]);
+                    coastalFlooding.setText("  Coastal Flooding: "+output[6]);
                     /*Cursor rs = databaseHelper.getData(state);
                     if (rs.moveToFirst()){
                         // do the work
@@ -211,9 +227,6 @@ public class ReportCardActivity extends AppCompatActivity {
                     getString(R.string.welcome_message,state)
             );
 
-            // giving a blink animation on TextView
-            txtLocationResult.setAlpha(0);
-            txtLocationResult.animate().alpha(1).setDuration(300);
 
             // location last updated time
         }
