@@ -57,13 +57,18 @@
         >
 
         <Button
+            android:id="@+id/detect_activity_button_homepage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recommend Task Based on Activity"
+            android:textAlignment="center"></Button>
+
+        <Button
             android:id="@+id/carbon_calc_button_homepage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
             android:text="Calculate Your \nCarbon Footprint"
-            >
-        </Button>
+            android:textAlignment="center"></Button>
 
         <Button
             android:id="@+id/meal_log_button_homepage"
