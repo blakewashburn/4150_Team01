@@ -1,3 +1,32 @@
+/**
+ * Team Name: Team_01
+ * Team Member1 Name: Blake Washburn
+ * Team Member1 CUID: C89257841
+ * Team Member1 email: bwashbu@g.clemson.edu
+ *
+ * Team Member2: Stephen Carvalho
+ * Team Member2 CUID: C70675411
+ * Team Member2 email: scarval@g.clemson.edu
+ *
+ * Citations:
+ *
+ * App Icon: https://www.flaticon.com/home
+ *
+ * States Page Icons: https://www.flaticon.com/home
+ *
+ * Detect Activity Code Inspired from: https://developers.google.com/location-context/activity-recognition
+ *
+ * Meal Log Code Inspired from: https://learn.zybooks.com/zybook/CLEMSONCPSC4150PlaueFall2019/chapter/5/section/2
+ * and https://learn.zybooks.com/zybook/CLEMSONCPSC4150PlaueFall2019/chapter/9/section/5
+ *
+ * SQLite Database Code Inspired from: https://developer.android.com/training/data-storage/sqlite
+ * and https://learn.zybooks.com/zybook/CLEMSONCPSC4150PlaueFall2019/chapter/6/section/4
+ *
+ * FusedLocation Provider and Location Services code inspired from: https://learn.zybooks.com/zybook/CLEMSONCPSC4150PlaueFall2019/chapter/9/section/6
+ * and https://developer.android.com/training/location
+ *
+ * Carbon Footprint Calculator Metrics: https://www.epa.gov/energy/greenhouse-gases-equivalencies-calculator-calculations-and-references
+ */
 package edu.cpsc6150.co2ut;
 
 import android.app.PendingIntent;
@@ -22,28 +51,19 @@ public class BackgroundDetectedActivitiesService extends Service {
     IBinder mBinder = new BackgroundDetectedActivitiesService.LocalBinder();
 
     public class LocalBinder extends Binder {
-        /**
-         * Functionality:
-         * PreConditions:
-         * PostConditions:
-         */
         public BackgroundDetectedActivitiesService getServerInstance() {
             return BackgroundDetectedActivitiesService.this;
         }   //end getServerInstance method
     }   //end LocalBinder class
 
-    /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
-     */
+
     public BackgroundDetectedActivitiesService() {
     }   //end BackgroundDetectedActivitiesService method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Initialize intent, pending intent and ActivityRecognitionClient
+     * PreConditions: Declare the intent, PendingIntent and ActivityRecognitionClient
+     * PostConditions: The intent, PendingIntent and ActivityRecognitionClient should be initialized
      */
     @Override
     public void onCreate() {
@@ -54,22 +74,13 @@ public class BackgroundDetectedActivitiesService extends Service {
         requestActivityUpdatesButtonHandler();
     }   //end onCreate method
 
-    /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
-     */
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return mBinder;
     }   //end onBind method
 
-    /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
-     */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
@@ -77,21 +88,14 @@ public class BackgroundDetectedActivitiesService extends Service {
     }   //end onStartCommand method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Requests the activity updates and specify the time interval between detections
+     *
      */
     public void requestActivityUpdatesButtonHandler() {
         Task<Void> task = mActivityRecognitionClient.requestActivityUpdates(
                 Constants.DETECTION_INTERVAL_IN_MILLISECONDS,
                 mPendingIntent);
-
         task.addOnSuccessListener(new OnSuccessListener<Void>() {
-            /**
-             * Functionality:
-             * PreConditions:
-             * PostConditions:
-             */
             @Override
             public void onSuccess(Void result) {
                 Toast.makeText(getApplicationContext(),
@@ -102,11 +106,6 @@ public class BackgroundDetectedActivitiesService extends Service {
         });
 
         task.addOnFailureListener(new OnFailureListener() {
-            /**
-             * Functionality:
-             * PreConditions:
-             * PostConditions:
-             */
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(getApplicationContext(),
@@ -118,19 +117,12 @@ public class BackgroundDetectedActivitiesService extends Service {
     }   //end requestActivityUpdatesButtonHandler method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: removes the activityupdates handler when it is not longer required
      */
     public void removeActivityUpdatesButtonHandler() {
         Task<Void> task = mActivityRecognitionClient.removeActivityUpdates(
                 mPendingIntent);
         task.addOnSuccessListener(new OnSuccessListener<Void>() {
-            /**
-             * Functionality:
-             * PreConditions:
-             * PostConditions:
-             */
             @Override
             public void onSuccess(Void result) {
                 Toast.makeText(getApplicationContext(),
@@ -141,11 +133,6 @@ public class BackgroundDetectedActivitiesService extends Service {
         });
 
         task.addOnFailureListener(new OnFailureListener() {
-            /**
-             * Functionality:
-             * PreConditions:
-             * PostConditions:
-             */
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(getApplicationContext(), "Failed to remove activity updates!",
@@ -155,9 +142,9 @@ public class BackgroundDetectedActivitiesService extends Service {
     }   //end removeActivityUpdatesButtonHandler method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Removes the activityupdatesbuttonhandler on destroy
+     * PreConditions: OnDestroy must be called
+     * PostConditions: The removeActivityUpdatesButtonHandler() removes the handler
      */
     @Override
     public void onDestroy() {

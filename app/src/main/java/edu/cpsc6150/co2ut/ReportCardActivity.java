@@ -1,3 +1,32 @@
+/**
+ * Team Name: Team_01
+ * Team Member1 Name: Blake Washburn
+ * Team Member1 CUID: C89257841
+ * Team Member1 email: bwashbu@g.clemson.edu
+ *
+ * Team Member2: Stephen Carvalho
+ * Team Member2 CUID: C70675411
+ * Team Member2 email: scarval@g.clemson.edu
+ *
+ * Citations:
+ *
+ * App Icon: https://www.flaticon.com/home
+ *
+ * States Page Icons: https://www.flaticon.com/home
+ *
+ * Detect Activity Code Inspired from: https://developers.google.com/location-context/activity-recognition
+ *
+ * Meal Log Code Inspired from: https://learn.zybooks.com/zybook/CLEMSONCPSC4150PlaueFall2019/chapter/5/section/2
+ * and https://learn.zybooks.com/zybook/CLEMSONCPSC4150PlaueFall2019/chapter/9/section/5
+ *
+ * SQLite Database Code Inspired from: https://developer.android.com/training/data-storage/sqlite
+ * and https://learn.zybooks.com/zybook/CLEMSONCPSC4150PlaueFall2019/chapter/6/section/4
+ *
+ * FusedLocation Provider and Location Services code inspired from: https://learn.zybooks.com/zybook/CLEMSONCPSC4150PlaueFall2019/chapter/9/section/6
+ * and https://developer.android.com/training/location
+ *
+ * Carbon Footprint Calculator Metrics: https://www.epa.gov/energy/greenhouse-gases-equivalencies-calculator-calculations-and-references
+ */
 package edu.cpsc6150.co2ut;
 
 import android.Manifest;
@@ -140,9 +169,9 @@ public class ReportCardActivity extends AppCompatActivity {
     }   //end init method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Restores the savedState of the activity
+     * PreConditions: Needs the instance state to be saved
+     * PostConditions: Retrieve the saved state and update the UI
      */
     private void restoreValuesFromBundle(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
@@ -158,14 +187,11 @@ public class ReportCardActivity extends AppCompatActivity {
     }   //end restoreValuesFromBundle method
 
 
+
     /**
-     * Update the UI displaying the location data
-     * and toggling the buttons
-     */
-    /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Update the UI displaying the location data
+     * PreConditions: Requires the current location
+     * PostConditions: Updates the UI with the current location and the states report card from the database
      */
     String state;
     private void updateLocationUI() {
@@ -221,9 +247,9 @@ public class ReportCardActivity extends AppCompatActivity {
     }   //end updateLocationUI method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Saves the Activities current state
+     * PreConditions: Needs the values of mCurrentLocation and mRequestingLocationUpdates
+     * PostConditions: The Instance state should be saved to the Bundle
      */
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -234,26 +260,16 @@ public class ReportCardActivity extends AppCompatActivity {
 
 
 
+
     /**
-     * Starting location updates
-     * Check whether location settings are satisfied and then
-     * location updates will be requested
-     */
-    /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Starting location updates
+     * PreConditions: Check whether location settings are satisfied
+     * PostConditions: Location updates will be requested
      */
     private void startLocationUpdates() {
         mSettingsClient
                 .checkLocationSettings(mLocationSettingsRequest)
                 .addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
-
-                    /**
-                     * Functionality:
-                     * PreConditions:
-                     * PostConditions:
-                     */
                     @SuppressLint("MissingPermission")
                     @Override
                     public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
@@ -269,12 +285,6 @@ public class ReportCardActivity extends AppCompatActivity {
                     }   //end onSuccess method
                 })
                 .addOnFailureListener(this, new OnFailureListener() {
-
-                    /**
-                     * Functionality:
-                     * PreConditions:
-                     * PostConditions:
-                     */
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         int statusCode = ((ApiException) e).getStatusCode();
@@ -304,9 +314,9 @@ public class ReportCardActivity extends AppCompatActivity {
     }   //end startLocationUpdates method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: OnClick will start receiving location updates
+     * PreConditions: Permissions must be granted
+     * PostConditions: Location Updates started
      */
     @OnClick(R.id.btn_start_location_updates)
     public void startLocationButtonClick() {
@@ -315,22 +325,12 @@ public class ReportCardActivity extends AppCompatActivity {
                 .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
                 .withListener(new PermissionListener() {
 
-                    /**
-                     * Functionality:
-                     * PreConditions:
-                     * PostConditions:
-                     */
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse response) {
                         mRequestingLocationUpdates = true;
                         startLocationUpdates();
                     }   //end onPermissionGranted method
 
-                    /**
-                     * Functionality:
-                     * PreConditions:
-                     * PostConditions:
-                     */
                     @Override
                     public void onPermissionDenied(PermissionDeniedResponse response) {
                         if (response.isPermanentlyDenied()) {
@@ -340,11 +340,6 @@ public class ReportCardActivity extends AppCompatActivity {
                         }
                     }   //end onPermuissionDenied method
 
-                    /**
-                     * Functionality:
-                     * PreConditions:
-                     * PostConditions:
-                     */
                     @Override
                     public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
                         token.continuePermissionRequest();
@@ -354,9 +349,9 @@ public class ReportCardActivity extends AppCompatActivity {
 
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Stop or pause location updates when the app pauses
+     * PreConditions: FusedLocationClient must be intialized
+     * PostConditions: Stop Location updates
      */
     public void stopLocationUpdates() {
         // Removing location updates
@@ -377,9 +372,9 @@ public class ReportCardActivity extends AppCompatActivity {
     }   //end stopLocationUpdates method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Check whether user has granted permissions or not
+     * PreConditions: Needs requestCode, resultCode and data as parameters
+     * PostConditions: Log the ActivityResult as an error log
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -402,9 +397,9 @@ public class ReportCardActivity extends AppCompatActivity {
     }   //end onActivityResult method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Open settings if permissions is denied
+     * PreConditions: Settings URI
+     * PostConditions: Open Application details settings page
      */
     private void openSettings() {
         Intent intent = new Intent();
@@ -418,9 +413,9 @@ public class ReportCardActivity extends AppCompatActivity {
     }   //end openSettings method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Check for permissions again onResume
+     * PreConditions: App must be paused or stopped before this function is called
+     * PostConditions: onResume the locationupdates must be resume and the UI must be updated
      */
     @Override
     public void onResume() {
@@ -435,9 +430,9 @@ public class ReportCardActivity extends AppCompatActivity {
     }   //end onResume()
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Checks if permission to access location is granted
+     * PreConditions: Permission must be mentioned in the manifest file
+     * PostConditions: Return permission granted if Uses-Permission is mentioned in the activity file
      */
     private boolean checkPermissions() {
         int permissionState = ActivityCompat.checkSelfPermission(this,
@@ -446,9 +441,9 @@ public class ReportCardActivity extends AppCompatActivity {
     }   //end checkPermissions method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Stops location updates when the application is paused
+     * PreConditions: Application must be paused
+     * PostConditions: Location updates must be stopped
      */
     @Override
     protected void onPause() {
