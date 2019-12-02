@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:paddingStart="40dp"
+        android:paddingTop="10dp"
         android:paddingEnd="40dp"
         >
         <TableRow>
