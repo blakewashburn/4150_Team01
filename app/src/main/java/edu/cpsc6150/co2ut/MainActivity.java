@@ -14,14 +14,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Button detectActivity = findViewById(R.id.detect_activity_button_homepage);
         Button calcCarbonFootprint = findViewById(R. id.carbon_calc_button_homepage);
         Button mealLog = findViewById(R.id.meal_log_button_homepage);
         Button reportCard = findViewById(R.id.report_card_button_homepage);
 
+        detectActivity.setOnClickListener(detectActivityListener);
         calcCarbonFootprint.setOnClickListener(calcCarbonListener);
         mealLog.setOnClickListener(mealLogListener);
         reportCard.setOnClickListener(reportCardListener);
     }
+
+    // Detect Activity Listener
+    private View.OnClickListener detectActivityListener = new View.OnClickListener(){
+        @Override
+        public void onClick(View view){
+            startActivity(new Intent(MainActivity.this, DetectActivity.class));
+        }   //end onClick
+    };  //end detectActivitiyListener
 
     // Carbon Footprint Calculator Listener
     private View.OnClickListener calcCarbonListener = new View.OnClickListener(){

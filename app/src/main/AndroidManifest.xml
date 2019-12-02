@@ -7,8 +7,10 @@
         android:required="true" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddMealActivity"></activity>
+        <activity android:name=".DetectActivity"></activity>
+        <activity android:name=".AddMealActivity" />
         <activity android:name=".CarbonCalculatorScore" />
         <activity android:name=".CarbonCalculatorActivity" />
         <activity android:name=".ReportCardActivity" />
@@ -28,6 +31,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".DetectedActivitiesIntentService"
+            android:exported="false" />
+
+        <service android:name=".BackgroundDetectedActivitiesService"></service>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="edu.cpsc6150.co2ut.fileprovider"
