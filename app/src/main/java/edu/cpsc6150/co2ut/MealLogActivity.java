@@ -19,8 +19,10 @@ public class MealLogActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_log);
 
-        //create meal log
-        mealLog = Meal.createMealLog(this);
+        // create meal log
+        if(mealLog == null){
+            mealLog = Meal.createMealLog(this);
+        }
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         // Replace the contents of the container with the new fragment
