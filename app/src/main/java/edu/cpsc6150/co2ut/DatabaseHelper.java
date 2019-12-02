@@ -90,17 +90,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor res =  db.rawQuery( "select * from States_Report where name = '"+state+"'", null );
         return res;*/
         String State = state;
-        String[] name = new String[2];
+        String[] name = new String[7];
         String password;
         SQLiteDatabase db = getWritableDatabase();
-        String[] columns = {DatabaseHelper.STATE_NAME,DatabaseHelper.STATE_GRADE};
+        String[] columns = {DatabaseHelper.STATE_NAME,DatabaseHelper.STATE_GRADE,DatabaseHelper.EXTREME_HEAT,DatabaseHelper.DROUGHT,DatabaseHelper.WILDFIRES,DatabaseHelper.INLAND_FLOODING,DatabaseHelper.COASTAL_FLOODING};
         Cursor cursor =db.query(DatabaseHelper.TABLE_NAME,columns,"name = '"+state+"' ",null,null,null,null);
         StringBuffer buffer= new StringBuffer();
         while (cursor.moveToNext())
         {
             name[0] =cursor.getString(cursor.getColumnIndex(DatabaseHelper.STATE_NAME));
             name[1] =cursor.getString(cursor.getColumnIndex(DatabaseHelper.STATE_GRADE));
-        }   //end while loop
+            name[2] =cursor.getString(cursor.getColumnIndex(DatabaseHelper.EXTREME_HEAT));
+            name[3] =cursor.getString(cursor.getColumnIndex(DatabaseHelper.DROUGHT));
+            name[4] =cursor.getString(cursor.getColumnIndex(DatabaseHelper.WILDFIRES));
+            name[5] =cursor.getString(cursor.getColumnIndex(DatabaseHelper.INLAND_FLOODING));
+            name[6] =cursor.getString(cursor.getColumnIndex(DatabaseHelper.COASTAL_FLOODING));
+        }
+
 
         return name;
     }   //end getData method
