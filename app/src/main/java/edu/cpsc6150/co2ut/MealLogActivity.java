@@ -6,17 +6,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import java.util.ArrayList;
 
 public class MealLogActivity extends AppCompatActivity {
-    private Menu menu;
     private static ArrayList<Meal> mealLog;
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: set layout file, create mealLog if necessary, and inflate mealLog fragment
+     * PreConditions: savedInstanceState cannot be null
+     * PostConditions: mealLog has been populated, mealLog fragment is inflated to the view
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +23,7 @@ public class MealLogActivity extends AppCompatActivity {
 
         // create meal log
         if(mealLog == null){
-            mealLog = Meal.createMealLog(this);
+            mealLog = Meal.createMealLog();
         }
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -35,30 +33,29 @@ public class MealLogActivity extends AppCompatActivity {
     }   //end onCreate method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: return the mealLog
+     * PreConditions: none
+     * PostConditions: mealLog is returned to caller
      */
     public static ArrayList<Meal> getMealLog(){
         return mealLog;
     }   //end getMealLog method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: inflate the app bar
+     * PreConditions: menu cannot be null
+     * PostConditions: app bar menu is inflated to the view
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.app_bar_meal_log, menu);
-        this.menu = menu;
         return super.onCreateOptionsMenu(menu);
     }   //end onCreateOptionsMenu method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: handle items selected from the app bar
+     * PreConditions: item cannot be null
+     * PostConditions: AddMealActivity activity is started
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
