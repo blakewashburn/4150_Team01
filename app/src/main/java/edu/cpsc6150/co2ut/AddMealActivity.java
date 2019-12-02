@@ -43,9 +43,10 @@ public class AddMealActivity extends AppCompatActivity {
     public ArrayList<Meal> mealLog;
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: onCreate sets the layout file and connects front end widgets to the backend
+     * PreConditions: none
+     * PostConditions: mealLog is set to the mealLog from MainActivity, savePhoto button cannot
+     *                  be interacted with.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +62,10 @@ public class AddMealActivity extends AppCompatActivity {
     }   //end onCreate Method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Receives photo and starts the process of saving photo and displaying to user
+     * PreConditions: requestCode, resultCode, data cannot be null
+     * PostConditions: photo is displayed to user, date photo is taken is saved, save photo button
+     *                  can be interacted with now
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -77,9 +79,10 @@ public class AddMealActivity extends AppCompatActivity {
     }   //end onActivityResult method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: receives permission to use camera from user and calls takePhoto to capture an
+     *                  image for the user
+     * PreConditions: requestcode, permissions, grantResults cannot be null
+     * PostConditions: photo is taken
      */
     @Override
     public void onRequestPermissionsResult(int requestCode,
@@ -96,9 +99,9 @@ public class AddMealActivity extends AppCompatActivity {
     }   //end onRequestPermissionResult method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: checks if permissions are granted to user camera. if not, requests permission
+     * PreConditions: none
+     * PostConditions: returns true if permissions are granted. Otherwise, function returns false
      */
     private boolean hasExternalWritePermission() {
         // Get permission to write to external storage
@@ -113,9 +116,9 @@ public class AddMealActivity extends AppCompatActivity {
     }   //end hasExternalWritePermission method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: facilitates the capturing of an image for the user
+     * PreConditions: view cannot be null
+     * PostConditions: Camera is opened to capture an image, space is reserved to save the image
      */
     public void takePhoto(View view) {
         if (!hasExternalWritePermission()) return;
@@ -150,9 +153,9 @@ public class AddMealActivity extends AppCompatActivity {
     }   //end takePhoto method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: sets apart storage to use later to store an image in
+     * PreConditions: none
+     * PostConditions: returns a storage location where an image can be saved
      */
     private File createImageFile() throws IOException {
         // Create a unique image filename
@@ -166,9 +169,9 @@ public class AddMealActivity extends AppCompatActivity {
     }   //end createImageFile method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: displays the captured image back to the user for view
+     * PreConditions: photoToTake && mPhotoPath cannot be null
+     * PostConditions: photoToTake is set for viewing
      */
     private void displayPhoto() {
         // Get ImageView dimensions
@@ -196,9 +199,9 @@ public class AddMealActivity extends AppCompatActivity {
     }   //end displayPhoto method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Photo is added to photo gallery
+     * PreConditions: mPhotoPath cannot be null
+     * PostConditions: broadcast is sent to Media Scanner with new image file
      */
     private void addPhotoToGallery() {
         // Send broadcast to Media Scanner about new image file
@@ -210,9 +213,10 @@ public class AddMealActivity extends AppCompatActivity {
     }   //end addPhotoToGallery method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Save photo using SaveBitmapTask and save meal to internal storage
+     * PreConditions: savePhoto && view cannot be null
+     * PostConditions: meal is added to mealLog, MealLogActivity is started for user to view their
+     *                  updated mealLog
      */
     public void savePhoto(View view) {
         // Don't allow Save button to be pressed while image is saving
@@ -230,9 +234,9 @@ public class AddMealActivity extends AppCompatActivity {
     }   //end savePhoto method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Save changes to Photo if necessary
+     * PreConditions: mPhotoPath cannot be null
+     * PostConditions: Photo is saved to imageFile
      */
     private boolean saveAlteredPhoto() {
         // Read original image
@@ -245,8 +249,6 @@ public class AddMealActivity extends AppCompatActivity {
         // Draw original bitmap on canvas and apply the color filter
         Canvas canvas = new Canvas(alteredBitmap);
         Paint paint = new Paint();
-        //LightingColorFilter colorFilter = new LightingColorFilter(mMultColor, mAddColor);
-        //paint.setColorFilter(colorFilter);
         canvas.drawBitmap(bitmap, 0, 0, paint);
 
         // Save altered bitmap over the original image
@@ -264,9 +266,9 @@ public class AddMealActivity extends AppCompatActivity {
     }   //end saveAlteredPhoto method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: saves meal to internal storage for retrieval by MealLogActivity
+     * PreConditions: meal cannot be null
+     * PostConditions: meal is saved to mealLogFile from MainActivity
      */
     private void saveObjectInternally(Meal meal){
         File storageDir = MainActivity.getMealLogFile();
@@ -290,9 +292,9 @@ public class AddMealActivity extends AppCompatActivity {
     private class SaveBitmapTask extends AsyncTask<Void, Void, Boolean> {
 
         /**
-         * Functionality:
-         * PreConditions:
-         * PostConditions:
+         * Functionality: call saveAlteredPhoto to save the captured image
+         * PreConditions: none
+         * PostConditions: photo is saved
          */
         @Override
         protected Boolean doInBackground(Void... params) {
@@ -300,9 +302,9 @@ public class AddMealActivity extends AppCompatActivity {
         }   //end doInBackground method
 
         /**
-         * Functionality:
-         * PreConditions:
-         * PostConditions:
+         * Functionality: inform the user of the storage status of the photo
+         * PreConditions: result cannot be null
+         * PostConditions: savePhoto button can be interacted with
          */
         @Override
         protected void onPostExecute(Boolean result) {
@@ -316,9 +318,9 @@ public class AddMealActivity extends AppCompatActivity {
     }   //end SaveBitmapTask Class
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: update mealType and impactScore variables based on choices of the user
+     * PreConditions: view cannot be null
+     * PostConditions: mealType && impactScore are updated
      */
     public void onRadioButtonClicked(View view) {
         // Which radio button was selected?

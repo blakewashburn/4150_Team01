@@ -16,16 +16,16 @@ import java.util.List;
 public class MealLogFragment extends Fragment {
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: necessary empty fragment constructor
+     * PreConditions: none
+     * PostConditions: none
      */
     public MealLogFragment() {} //end MealLogFragment constructor
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: attach item to context
+     * PreConditions: context cannot be null
+     * PostConditions: context is attached by calling super.onAttach
      */
     @Override
     public void onAttach(Context context) {
@@ -33,9 +33,9 @@ public class MealLogFragment extends Fragment {
     }   //end onAttach method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: detach item from context
+     * PreConditions: none
+     * PostConditions: item is detached by calling super.onDetach
      */
     @Override
     public void onDetach() {
@@ -43,9 +43,10 @@ public class MealLogFragment extends Fragment {
     }   //end onDetach method
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: setup recycler view and get mealLog to populate recyclerview
+     * PreConditions: inflater && container cannot be null
+     * PostConditions: MealLogFragment displays a scrollable list of meals that the user can
+     *                  interact with
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -72,9 +73,9 @@ public class MealLogFragment extends Fragment {
         private TextView impactScore;
 
         /**
-         * Functionality:
-         * PreConditions:
-         * PostConditions:
+         * Functionality: constructor for the MealHolder class
+         * PreConditions: inflater and parent cannot be null
+         * PostConditions: MealHolder is initialized
          */
         public MealHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_meals, parent, false));
@@ -85,9 +86,9 @@ public class MealLogFragment extends Fragment {
         }   // end MealHolder constructor
 
         /**
-         * Functionality:
-         * PreConditions:
-         * PostConditions:
+         * Functionality: Updates the local currentMeal variable to the passed in meal variable
+         * PreConditions: meal must be completely initialized
+         * PostConditions: the local currentMeal = passed meal variable
          */
         public void bind(Meal meal) {
             currentMeal = meal;
@@ -102,18 +103,18 @@ public class MealLogFragment extends Fragment {
         private List<Meal> meals;
 
         /**
-         * Functionality:
-         * PreConditions:
-         * PostConditions:
+         * Functionality: constructor for MealAdapter class
+         * PreConditions: myMeals cannot be null
+         * PostConditions: this.meals = passed myMeals variable
          */
         public MealAdapter(List<Meal> myMeals) {
             meals = myMeals;
         }   //end MealAdapter method
 
         /**
-         * Functionality:
-         * PreConditions:
-         * PostConditions:
+         * Functionality: inflate layout and call MealHolder constructor
+         * PreConditions: parent && viewType cannot be null
+         * PostConditions: a valid MealHolder object is returned
          */
         @Override
         public MealHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -122,9 +123,9 @@ public class MealLogFragment extends Fragment {
         }   //end onCreateViewHolder method
 
         /**
-         * Functionality:
-         * PreConditions:
-         * PostConditions:
+         * Functionality: Call bind to connect the holder to the meal
+         * PreConditions: holder && position cannot be null
+         * PostConditions: holder.bind() will be called with a valid Meal object
          */
         @Override
         public void onBindViewHolder(MealHolder holder, int position) {
@@ -133,9 +134,9 @@ public class MealLogFragment extends Fragment {
         }   //end onBindViewHolder method
 
         /**
-         * Functionality:
-         * PreConditions:
-         * PostConditions:
+         * Functionality: Returns the number of meals in the recyclerview
+         * PreConditions: this.meals should be initialized
+         * PostConditions: getItemCount() = meals.size()
          */
         @Override
         public int getItemCount() {
