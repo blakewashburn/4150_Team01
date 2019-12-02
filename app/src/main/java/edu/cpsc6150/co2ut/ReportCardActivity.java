@@ -27,6 +27,7 @@
  *
  * Carbon Footprint Calculator Metrics: https://www.epa.gov/energy/greenhouse-gases-equivalencies-calculator-calculations-and-references
  */
+
 package edu.cpsc6150.co2ut;
 
 import android.Manifest;

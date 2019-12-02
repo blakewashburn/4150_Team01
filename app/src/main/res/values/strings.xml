@@ -8,12 +8,12 @@
     <string name="add_app_bar_button">Add Meal</string>
     <string name="start_updates">Get Location</string>
     <string name="welcome_message">Hello, %1$s! Heres your Climate Change preparedness Report Card! \n \n </string>
-    <string name="activity_in_vehicle">In Vehicle</string>
-    <string name="activity_on_bicycle">On Bicycle</string>
-    <string name="activity_on_foot">On Foot</string>
-    <string name="activity_running">Running</string>
-    <string name="activity_still">Still</string>
-    <string name="activity_tilting">Tilting</string>
-    <string name="activity_walking">walking</string>
-    <string name="activity_unknown">Unknown</string>
+    <string name="activity_in_vehicle">In Vehicle \n You should consider using public transit or be more active and bike, walk or run.</string>
+    <string name="activity_on_bicycle">On Bicycle \n Great going! Your droping Carbon and carbs!</string>
+    <string name="activity_on_foot">On Foot \n Great going! Your droping Carbon and carbs!</string>
+    <string name="activity_running">Running \n Great going! Your droping Carbon and carbs!</string>
+    <string name="activity_still">Still \n Quit lazying around and do something to save the planet!</string>
+    <string name="activity_tilting">Tilting \n Quit lazying around and do something to save the planet!</string>
+    <string name="activity_walking">walking \n Great going! Your droping Carbon and carbs!</string>
+    <string name="activity_unknown">Unknown \n Quit lazying around and do something to save the planet!x</string>
 </resources>
