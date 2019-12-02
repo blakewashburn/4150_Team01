@@ -40,6 +40,7 @@ public class AddMealActivity extends AppCompatActivity {
     private String mPhotoPath;
     private ImageView photoToTake;
     private Button savePhoto;
+    private String date;
     public ArrayList<Meal> mealLog;
 
     @Override
@@ -60,6 +61,7 @@ public class AddMealActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d("onActivityResult", "stepping into function");
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
+            date =  new SimpleDateFormat("MM/dd/yyyy").format(new Date());
             displayPhoto();
             addPhotoToGallery();
             savePhoto.setEnabled(true);
@@ -173,8 +175,6 @@ public class AddMealActivity extends AppCompatActivity {
         Log.d("addPhotoToGallery", "stepping into function");
 
         // Send broadcast to Media Scanner about new image file
-
-        //TODO: add photo to MealLog list
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         File file = new File(mPhotoPath);
         Uri fileUri = Uri.fromFile(file);
@@ -187,9 +187,14 @@ public class AddMealActivity extends AppCompatActivity {
         // Don't allow Save button to be pressed while image is saving
         savePhoto.setEnabled(false);
 
+        Meal newMeal = new Meal(photoToTake.getDrawable(), date, "food", "3");
+        mealLog.add(newMeal);
         // Save in background thread
         SaveBitmapTask saveTask = new SaveBitmapTask();
         saveTask.execute();
+
+        Intent intent = new Intent(AddMealActivity.this, MealLogActivity.class);
+        startActivity(intent);
     }
 
     private boolean saveAlteredPhoto() {
