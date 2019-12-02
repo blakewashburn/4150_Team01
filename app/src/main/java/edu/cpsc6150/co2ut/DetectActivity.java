@@ -8,7 +8,6 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,9 +21,9 @@ public class DetectActivity extends AppCompatActivity {
     private String TAG = DetectActivity.class.getSimpleName();
     BroadcastReceiver broadcastReceiver;
 
-    private TextView txtActivity, txtConfidence;
+    private TextView txtActivity, txtConfidence, positive, driving, still;
     private ImageView imgActivity;
-    private Button btnStartTrcking, btnStopTracking;
+
 
     /**
      * Functionality:
@@ -35,36 +34,18 @@ public class DetectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detect);
-
+        startTracking();
         txtActivity = findViewById(R.id.txt_activity);
         txtConfidence = findViewById(R.id.txt_confidence);
+        positive = findViewById(R.id.positive);
+        driving = findViewById(R.id.driving);
+        still = findViewById(R.id.still);
         imgActivity = findViewById(R.id.img_activity);
-        btnStartTrcking = findViewById(R.id.btn_start_tracking);
-        btnStopTracking = findViewById(R.id.btn_stop_tracking);
 
-        btnStartTrcking.setOnClickListener(new View.OnClickListener() {
-            /**
-             * Functionality:
-             * PreConditions:
-             * PostConditions:
-             */
-            @Override
-            public void onClick(View view) {
-                startTracking();
-            }
-        });
+        positive.setVisibility(View.GONE);
+        still.setVisibility(View.GONE);
+        driving.setVisibility(View.GONE);
 
-        btnStopTracking.setOnClickListener(new View.OnClickListener() {
-            /**
-             * Functionality:
-             * PreConditions:
-             * PostConditions:
-             */
-            @Override
-            public void onClick(View view) {
-                stopTracking();
-            }
-        });
 
         broadcastReceiver = new BroadcastReceiver() {
             /**
@@ -92,44 +73,83 @@ public class DetectActivity extends AppCompatActivity {
     private void handleUserActivity(int type, int confidence) {
         String label = getString(R.string.activity_unknown);
         int icon = R.drawable.ic_still;
+        String message = "";
+
 
         switch (type) {
             case DetectedActivity.IN_VEHICLE: {
                 label = getString(R.string.activity_in_vehicle);
                 icon = R.drawable.ic_driving;
+                message = "You should consider using public transit or be more active and bike, walk or run.";
+                positive.setVisibility(View.GONE);
+                still.setVisibility(View.GONE);
+                driving.setVisibility(View.VISIBLE);
+                driving.setText(message);
                 break;
             }
             case DetectedActivity.ON_BICYCLE: {
                 label = getString(R.string.activity_on_bicycle);
+                message = "Great going! Your droping Carbon and carbs!";
                 icon = R.drawable.ic_on_bicycle;
+                positive.setVisibility(View.VISIBLE);
+                still.setVisibility(View.GONE);
+                driving.setVisibility(View.GONE);
+                positive.setText(message);
                 break;
             }
             case DetectedActivity.ON_FOOT: {
                 label = getString(R.string.activity_on_foot);
                 icon = R.drawable.ic_walking;
+                message = "Great going! Your droping Carbon and carbs!";
+                positive.setVisibility(View.VISIBLE);
+                still.setVisibility(View.GONE);
+                driving.setVisibility(View.GONE);
+                positive.setText(message);
                 break;
             }
             case DetectedActivity.RUNNING: {
                 label = getString(R.string.activity_running);
                 icon = R.drawable.ic_running;
+                message = "Great going! Your droping Carbon and carbs!";
+                positive.setVisibility(View.VISIBLE);
+                still.setVisibility(View.GONE);
+                driving.setVisibility(View.GONE);
+                positive.setText(message);
                 break;
             }
             case DetectedActivity.STILL: {
                 label = getString(R.string.activity_still);
+                positive.setVisibility(View.GONE);
+                still.setVisibility(View.VISIBLE);
+                driving.setVisibility(View.GONE);
+                still.setText(message);
                 break;
             }
             case DetectedActivity.TILTING: {
                 label = getString(R.string.activity_tilting);
                 icon = R.drawable.ic_tilting;
+                positive.setVisibility(View.GONE);
+                still.setVisibility(View.VISIBLE);
+                driving.setVisibility(View.GONE);
+                still.setText(message);
                 break;
             }
             case DetectedActivity.WALKING: {
                 label = getString(R.string.activity_walking);
                 icon = R.drawable.ic_walking;
+                message = "Great going! Your droping Carbon and carbs!";
+                positive.setVisibility(View.VISIBLE);
+                still.setVisibility(View.GONE);
+                driving.setVisibility(View.GONE);
+                positive.setText(message);
                 break;
             }
             case DetectedActivity.UNKNOWN: {
                 label = getString(R.string.activity_unknown);
+                positive.setVisibility(View.GONE);
+                still.setVisibility(View.VISIBLE);
+                driving.setVisibility(View.GONE);
+                still.setText(message);
                 break;
             }
         }   //end switch statement
@@ -140,6 +160,8 @@ public class DetectActivity extends AppCompatActivity {
             txtActivity.setText(label);
             txtConfidence.setText("Confidence: " + confidence);
             imgActivity.setImageResource(icon);
+
+
         }
     }   //end handleUserActivity method
 
@@ -151,9 +173,11 @@ public class DetectActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
+        stopTracking();
+        startTracking();
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver,
                 new IntentFilter(Constants.BROADCAST_DETECTED_ACTIVITY));
+        //startTracking();
     }   //end onResume method
 
     /**

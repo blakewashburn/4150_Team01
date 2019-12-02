@@ -143,9 +143,14 @@
             android:layout_height="wrap_content"
             android:text="SUBMIT"
             android:textSize="@dimen/reg_text_size_portrait"
-            android:textAlignment="center"
-            android:paddingTop="@dimen/cf_calc_qa_top_padding"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="20dp"
             android:layout_gravity="center"
+            android:layout_marginVertical="20dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/button_background"
+            android:textAlignment="center"
+            android:textColor="@color/white"
             >
         </Button>
     </LinearLayout>
