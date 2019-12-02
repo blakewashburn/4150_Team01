@@ -17,14 +17,9 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -62,17 +57,9 @@ public class ReportCardActivity extends AppCompatActivity {
     @BindView(R.id.btn_start_location_updates)
     Button btnStartUpdates;
 
-    // location updates interval - 10sec
     private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;
-
-    // fastest updates interval - 5 sec
-    // location updates will be received if another app is requesting the locations
-    // than your app can handle
     private static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = 5000;
-
     private static final int REQUEST_CHECK_SETTINGS = 100;
-
-    // bunch of location related apis
     private FusedLocationProviderClient mFusedLocationClient;
     private SettingsClient mSettingsClient;
     private LocationRequest mLocationRequest;
@@ -80,16 +67,15 @@ public class ReportCardActivity extends AppCompatActivity {
     private LocationCallback mLocationCallback;
     private Location mCurrentLocation;
 
-    // boolean flag to toggle the ui
     private Boolean mRequestingLocationUpdates;
 
     private DatabaseHelper databaseHelper;
     private TextView statedisplay, gradedisplay, heat, drought, wildfires, inlandFlooding,coastalFlooding;
 
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Instantiates the DatabaseHelper class and other UI Components like textviews
+     * PreConditions: DatabaseHelper and textviews must be declared
+     * PostConditions: Textviews are assigned and DatabaseHelper initialized
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,10 +99,11 @@ public class ReportCardActivity extends AppCompatActivity {
         restoreValuesFromBundle(savedInstanceState);
     }   //end onCreate method
 
+
     /**
-     * Functionality:
-     * PreConditions:
-     * PostConditions:
+     * Functionality: Initializes the necessary libraries to get location updates
+     * PreConditions: Library's required for the location updates must be declared
+     * PostConditions: All necessary Libraries are intialized
      */
     private void init() {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -124,10 +111,11 @@ public class ReportCardActivity extends AppCompatActivity {
 
         mLocationCallback = new LocationCallback() {
             /**
-             * Functionality:
-             * PreConditions:
-             * PostConditions:
+             * Functionality: Updates Last location on receiving location updates
+             * PreConditions: Needs to receive locationResult as a parameter
+             * PostConditions: Return updated last location to the UI
              */
+
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 super.onLocationResult(locationResult);
@@ -227,7 +215,7 @@ public class ReportCardActivity extends AppCompatActivity {
                     getString(R.string.welcome_message,state)
             );
 
-            
+
             // location last updated time
         }
     }   //end updateLocationUI method

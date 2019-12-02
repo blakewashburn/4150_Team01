@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
+    android:orientation="vertical"
     tools:context=".DetectActivity">
 
     <LinearLayout
@@ -38,21 +39,49 @@
             android:textAllCaps="true"
             android:textSize="14dp" />
 
+        <TextView
+            android:id="@+id/positive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="5dp"
+            android:background="@color/colorPrimary"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="5dp"
+            android:text="ads"
+            android:textColor="@color/white"
+            android:fontFamily="@font/bitter"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/driving"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#F7685B"
+            android:textColor="@color/white"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="5dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="5dp"
+            android:fontFamily="@font/bitter"
+            android:textStyle="bold"
+            android:text="asd" />
+        <TextView
+            android:id="@+id/still"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FFB946"
+            android:textColor="@color/white"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="5dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="5dp"
+            android:fontFamily="@font/bitter"
+            android:textStyle="bold"
+            android:text="asd" />
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_start_tracking"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="Start Tracking" />
 
-    <Button
-        android:id="@+id/btn_stop_tracking"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="Stop Tracking" />
+
+
 </RelativeLayout>
