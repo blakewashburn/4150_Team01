@@ -1,7 +1,6 @@
 package edu.cpsc6150.co2ut;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -16,6 +15,11 @@ public class CarbonCalculatorScore extends AppCompatActivity {
     public final double GARBAGE_BAGS_TO_CO2_KGS = 400;
     public final double KGS_IN_METRIC_TON = 1000;
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

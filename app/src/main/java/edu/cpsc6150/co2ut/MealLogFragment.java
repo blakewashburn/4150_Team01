@@ -3,7 +3,6 @@ package edu.cpsc6150.co2ut;
 import android.content.Context;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,23 +15,38 @@ import java.util.List;
 
 public class MealLogFragment extends Fragment {
 
-    // Required empty public constructor
-    public MealLogFragment() {}
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
+    public MealLogFragment() {} //end MealLogFragment constructor
 
-    public static MealLogFragment newInstance() {
-        return new MealLogFragment();
-    }   //end newInstance method
-
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
     }   //end onAttach method
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     @Override
     public void onDetach() {
         super.onDetach();
     }   //end onDetach method
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -57,6 +71,11 @@ public class MealLogFragment extends Fragment {
         private TextView mealType;
         private TextView impactScore;
 
+        /**
+         * Functionality:
+         * PreConditions:
+         * PostConditions:
+         */
         public MealHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_meals, parent, false));
             mealPictured = itemView.findViewById(R.id.rv_meal_pictured);
@@ -65,6 +84,11 @@ public class MealLogFragment extends Fragment {
             impactScore = itemView.findViewById(R.id.rv_impact_score);
         }   // end MealHolder constructor
 
+        /**
+         * Functionality:
+         * PreConditions:
+         * PostConditions:
+         */
         public void bind(Meal meal) {
             currentMeal = meal;
             mealDate.setText(currentMeal.getDate());
@@ -77,22 +101,42 @@ public class MealLogFragment extends Fragment {
     private class MealAdapter extends RecyclerView.Adapter<MealHolder> {
         private List<Meal> meals;
 
+        /**
+         * Functionality:
+         * PreConditions:
+         * PostConditions:
+         */
         public MealAdapter(List<Meal> myMeals) {
             meals = myMeals;
         }   //end MealAdapter method
 
+        /**
+         * Functionality:
+         * PreConditions:
+         * PostConditions:
+         */
         @Override
         public MealHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
             return new MealHolder(layoutInflater, parent);
         }   //end onCreateViewHolder method
 
+        /**
+         * Functionality:
+         * PreConditions:
+         * PostConditions:
+         */
         @Override
         public void onBindViewHolder(MealHolder holder, int position) {
             Meal meal = meals.get(position);
             holder.bind(meal);
         }   //end onBindViewHolder method
 
+        /**
+         * Functionality:
+         * PreConditions:
+         * PostConditions:
+         */
         @Override
         public int getItemCount() {
             return meals.size();

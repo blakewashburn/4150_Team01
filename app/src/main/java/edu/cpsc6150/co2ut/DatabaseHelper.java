@@ -32,23 +32,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + INLAND_FLOODING + " TEXT, "
             + COASTAL_FLOODING + " TEXT)";
 
-
-
-
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         //Log.d("table", CREATE_TABLE_STUDENTS);
-    }
+    }   //end DatabaseHelper constructor
+
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_STUDENTS);
-    }
+    }   //end onCreate method
+
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS '" + TABLE_NAME + "'");
         onCreate(db);
+    }   //end onUpgrade method
 
-    }
     /*public long addStudentDetail(String state, String grade, String heat, String drought, String wildfires, String iflooding, String cflooding) {
         SQLiteDatabase db = this.getWritableDatabase();
         // Creating content values
@@ -66,6 +80,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return insert;
     }*/
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     public String[] getData(String state) {
         /*SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery( "select * from States_Report where name = '"+state+"'", null );
@@ -81,11 +100,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         {
             name[0] =cursor.getString(cursor.getColumnIndex(DatabaseHelper.STATE_NAME));
             name[1] =cursor.getString(cursor.getColumnIndex(DatabaseHelper.STATE_GRADE));
-        }
-
+        }   //end while loop
 
         return name;
-    }
-
-
-}
+    }   //end getData method
+}   //end DatabaseHelper class

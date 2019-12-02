@@ -1,7 +1,6 @@
 package edu.cpsc6150.co2ut;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,13 +16,15 @@ public class CarbonCalculatorActivity extends AppCompatActivity {
     public EditText answer4View;
     public Button submitButton;
 
+    /**
+     * Functionality:
+     * PreConditions:
+     * PostConditions:
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carbon_calculator);
-
-
-
 
         // connect front-end EditText views to EditText values on back-end
         answer1View = findViewById(R.id.cf_calc_answer1);
@@ -34,8 +35,12 @@ public class CarbonCalculatorActivity extends AppCompatActivity {
         submitButton.setOnClickListener(submitListener);
     }   //end onCreate method
 
-    // Carbon Footprint Calculator Listener
     private View.OnClickListener submitListener = new View.OnClickListener(){
+        /**
+         * Functionality:
+         * PreConditions:
+         * PostConditions:
+         */
         @Override
         public void onClick(View view){
             // Check that user gave answers for all questions
