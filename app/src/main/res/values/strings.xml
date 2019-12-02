@@ -6,8 +6,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_app_bar_button">Add Meal</string>
-    <string name="start_updates">START LOCATION UPDATES</string>
-    <string name="welcome_message">Hello, %1$s! Heres how you all will fare in apocalypse! </string>
+    <string name="start_updates">Get Location</string>
+    <string name="welcome_message">Hello, %1$s! Heres your Climate Change preparedness Report Card! \n \n </string>
     <string name="activity_in_vehicle">In Vehicle</string>
     <string name="activity_on_bicycle">On Bicycle</string>
     <string name="activity_on_foot">On Foot</string>
